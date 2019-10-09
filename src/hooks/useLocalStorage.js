@@ -13,12 +13,12 @@ export function useInput(initialValue){
 export function useLocalStorage  (key, initialValue) {
     const [value, setValue] = useInput(
         //testing out browser for localstorage getItem
-        window.localStorage.getItem(key) || initialValue
+        JSON.parse(window.localStorage.getItem(key)) || initialValue
     )
 
     const customSetter =(newValue) => {
         setValue(newValue)
-        window.localStorage.setItem(key, newValue)
+        window.localStorage.setItem(key, JSON.stringify(newValue))
     }
     return [value, customSetter]
     
